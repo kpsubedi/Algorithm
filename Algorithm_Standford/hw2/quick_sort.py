@@ -22,26 +22,22 @@ def processarray(A):
 def dopartition(A,L,R):
     pivot = A[L]
     i = L + 1
-    j = L + 1
-    for j in range(1,R-L):
-        if A[j] > pivot:
-            j = j + 1
-        else:
+    for j in range(L+1,R):
+        if A[j] < pivot:
 	    temp = A[j]
 	    A[j] = A[i]
             A[i] = temp
 	    i = i + 1
-	    j = j + 1
     temp1 = A[i-1]
     A[i-1] = pivot
-    A[0] = temp1
+    A[L] = temp1
     #print A
     return i-1
 
 def doquicksort(input_array,L,R):
     if L < R:
         p = dopartition(input_array, L, R)
-        doquicksort(input_array, L, p-1)
+        doquicksort(input_array, L, p)
         doquicksort(input_array, p+1, R)
     return input_array
 def main():
@@ -53,8 +49,8 @@ def main():
     print "Length:#",len(input_array)
     print input_array
     #print "Given Input:", Aa
-    print "Index:#",dopartition(input_array,0,len(input_array))
-    #print "Quick Sort:",doquicksort(input_array,0,len(input_array))
+    #print "Index:#",dopartition(input_array,0,len(input_array))
+    print "Quick Sort:",doquicksort(input_array,0,len(input_array))
     print input_array
     #print "Index:#",dopartition(Aa)
 
