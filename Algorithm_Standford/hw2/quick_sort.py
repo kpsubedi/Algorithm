@@ -11,7 +11,7 @@ def readfile(file):
     my_list = []
     fh = open(file,'r')
     for line in fh:
-        my_list.append(line.strip())
+        my_list.append(int(line.strip()))
     return my_list
 
 def processarray(A):
@@ -41,8 +41,8 @@ def main():
     #file_name = 'QuickSort.txt'
     file_name = getfilename()
     print "Input File###",file_name
-    #input_array = readfile(file_name)
-    input_array=[24,90,4,8,9,34,2,5,1,7,6,670,120]
+    input_array = readfile(file_name)
+    #input_array=[24,90,4,8,9,34,2,5,1,7,6,670,120]
     print "Length:#",len(input_array)
     print input_array
     #print "Given Input:", Aa
