@@ -19,43 +19,45 @@ def readfile(file):
 def processarray(A):
     for i in range(len(A)):
         print A[i]
-def dopartition(A):
-    pivot = A[0]
-    print A
-    #print pivot
-    i = 1
-    j = 1
-    k = 1
-    print A[i], A[j]
-    for j in range(2,len(A)):
-        if A[i] > A[j]:
-            temp = A[i]
-            A[i] = A[j]
-            A[j] = temp
+def dopartition(A,L,R):
+    pivot = A[L]
+    i = L + 1
+    j = L + 1
+    for j in range(1,R-L):
+        if A[j] > pivot:
             j = j + 1
-            #i = i +1
-        elif A[i] < A[j]:
-            #k = k + 1
-            #j = j + 1
-            i = i + 1
-        #else:
-            #print i, j
-    print "Final Array,A=", A,"i=", i,"j=", j
-    # swap i and pivot
-    temp1 = A[i]
-    print temp1
+        else:
+	    temp = A[j]
+	    A[j] = A[i]
+            A[i] = temp
+	    i = i + 1
+	    j = j + 1
+    temp1 = A[i-1]
+    A[i-1] = pivot
+    A[0] = temp1
     #print A
+    return i-1
+
+def doquicksort(input_array,L,R):
+    if L < R:
+        p = dopartition(input_array, L, R)
+        doquicksort(input_array, L, p-1)
+        doquicksort(input_array, p+1, R)
+    return input_array
 def main():
     #file_name = 'QuickSort.txt'
     file_name = getfilename()
     print "Input File###",file_name
-    input_array = readfile(file_name)
+    #input_array = readfile(file_name)
+    input_array=[24,90,4,8,9,34,2,5,1,7,6,670,120]
     print "Length:#",len(input_array)
-    #processarray(input_array)
-    Aa=[3,8,2,5,1,4,7,6]
-    dopartition(Aa)
-    #print readfile(file_name)
-    #readfile(file_name)
+    print input_array
+    #print "Given Input:", Aa
+    print "Index:#",dopartition(input_array,0,len(input_array))
+    #print "Quick Sort:",doquicksort(input_array,0,len(input_array))
+    print input_array
+    #print "Index:#",dopartition(Aa)
+
 
 
 if __name__=='__main__':
