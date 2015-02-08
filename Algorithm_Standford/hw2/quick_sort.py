@@ -5,14 +5,12 @@ def getfilename():
     parser = argparse.ArgumentParser(description="Quick Sort Algorithm")
     parser.add_argument('filename',type=str,help='File Name')
     args = parser.parse_args()
-    #print args
     return args.filename
 
 def readfile(file):
     my_list = []
     fh = open(file,'r')
     for line in fh:
-        #print line.strip()
         my_list.append(line.strip())
     return my_list
 
@@ -31,7 +29,6 @@ def dopartition(A,L,R):
     temp1 = A[i-1]
     A[i-1] = pivot
     A[L] = temp1
-    #print A
     return i-1
 
 def doquicksort(input_array,L,R):
