@@ -30,25 +30,32 @@ def dopartition(A,L,R):
     A[i-1] = pivot
     A[L] = temp1
     return i-1
-
 def doquicksort(input_array,L,R):
     if L < R:
         p = dopartition(input_array, L, R)
         doquicksort(input_array, L, p)
         doquicksort(input_array, p+1, R)
     return input_array
+def writeoutput(output_array):
+    fd = open('output.txt.','w')
+    for data in output_array:
+        fd.write(str(data))
+        fd.write("\n")
 def main():
     #file_name = 'QuickSort.txt'
     file_name = getfilename()
     print "Input File###",file_name
     input_array = readfile(file_name)
-    #input_array=[24,90,4,8,9,34,2,5,1,7,6,670,120]
+    #input_array=[3,8,2,5,1,4,7,0]
     print "Length:#",len(input_array)
-    print input_array
+    #print input_array
     #print "Given Input:", Aa
     #print "Index:#",dopartition(input_array,0,len(input_array))
-    print "Quick Sort:",doquicksort(input_array,0,len(input_array))
-    print input_array
+    #print "Quick Sort:",doquicksort(input_array,0,len(input_array))
+    output_result = doquicksort(input_array,0,len(input_array))
+    print output_result
+    writeoutput(output_result)
+    #print input_array
     #print "Index:#",dopartition(Aa)
 
 
