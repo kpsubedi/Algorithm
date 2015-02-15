@@ -1,37 +1,32 @@
 # Python BST
 class BinaryNode:
     def __init__(self,value = None):
-        "Create binary Node"    
-	self.value = value
-	self.left = None
-	self.right = None
-	def add(self,val):
-		'''Add a new node to the tree containing '''
-		if val<=self.value:
+    	self.value = value
+    	self.left = None
+    	self.right = None
+	def add(self,value):
+		if value <= self.value:
 			if self.left:
-				self.left.add(val)
+				self.left.add(value)
 			else:
-				self.left = BinaryNode(val)
+				self.left = BinaryNode(value)
 		else:
 			if self.right:
-				self.right.add(val)
+				self.right.add(value)
 			else:
-				self.right = BinaryNode(val)
+				self.right = BinaryNode(value)
 
 
 
 class BinaryTree:
-    def __init__(self):
-	'''Create empty binary tree'''	    
+    def __init__(self):	    
         self.root = None
     def add(self, value):
-		'''Insert value inot proper location in Binary Tree'''
 		if self.root is None:
 			self.root = BinaryNode(value)
 		else:
 		    self.root.add(value)
     def contains(self, target):
-		'''check'''
 		node = self.root
 		while node:
 			if target == node.value:
@@ -41,4 +36,3 @@ class BinaryTree:
 			else:
 				node = node.right
 		return False
-

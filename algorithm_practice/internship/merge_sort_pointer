@@ -1,0 +1,90 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void display(int *p,int x){
+	int j;
+	for(j = 0 + 2; j < x; j++){
+		printf("%d\t\n",*(p+j));
+	}
+}
+
+void do_merge(int *start,int L, int m, int R){
+	//Create two array using L, m , and R
+	//
+	//
+	int *leftarray; 
+	leftarray = malloc(m-L+1*sizeof(int));
+	int *rightarray; 
+	rightarray = malloc(R-m*sizeof(int));
+	leftarray = start;
+	rightarray = start + m;
+	int *temp;
+       	temp = malloc(R-L+1*sizeof(int));
+
+	int i,j,k,res;
+	i = 0;
+	j = 0;
+	k = 0;
+	while(i <= m && j <= R){
+		if(*(leftarray + i)<*(rightarray + j)){
+			*(temp + k) = *(leftarray + i);
+			i = i + 1;
+		}
+		else{
+			*(temp+k) = *(rightarray + j);
+			j = j + 1;
+		}
+	}
+	k = k + 1;
+
+	while(i <= m){
+		*(temp + k) = *(leftarray + i);
+		i = i + 1;
+		k = k + 1;
+	}
+	while(j <= R){
+		*(temp + k) = *(rightarray + j);
+		j = j + 1;
+		k = k + 1;
+	}
+
+	printf("The Size of Temp:%d\n",sizeof(temp));
+	for(res = 0; res < 6; res++){
+		printf("%d\t\n",*(temp + res));
+	}
+
+}
+
+void carry_merge_sort(int *q, int L, int R){
+	int i;
+	int m;
+	if(L < R){
+		m = (L + R)/2;
+		carry_merge_sort(q,L,m);
+		carry_merge_sort(q,m+1,R);
+		return do_merge(q,L,m,R);
+	}
+
+}
+
+int main(int argc, char **argv){
+	unsigned int n;
+	int data,i;
+	int *head;
+	printf("Please Enter the size of data:");
+	scanf("%d",&n);
+	head = malloc(n*sizeof(int));
+	printf("Enter Data:");
+	for(i = 0;i < n; i++){
+		scanf("%d",&data);
+		*(head +i) = data;
+	}
+	printf("The Array Before Sort:\n");
+	display(head,n);
+	carry_merge_sort(head,0,n-1);
+	printf("The Array After Sort:\n");
+	display(head,n);
+	return EXIT_SUCCESS;
+}
+
+
