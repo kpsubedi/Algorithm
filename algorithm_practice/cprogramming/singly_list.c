@@ -14,6 +14,7 @@ void iterate_list();
 void create_list();
 void print_menu(void);
 void delete_last_item();
+void delete_first_item();
 
 int main(int argc, char **argv){
 
@@ -44,6 +45,9 @@ int main(int argc, char **argv){
 				break;
 			case 'd':
 				delete_last_item();
+				break;
+			case 'f':
+				delete_first_item();
 				break;	
 			case 'q':
 				exit(0);
@@ -53,6 +57,11 @@ int main(int argc, char **argv){
 	return EXIT_SUCCESS;
 
 }
+void delete_first_item(){
+	struct node *tmp;
+	tmp = head;
+
+	}
 void add_node(){
 	struct node *tmp;
 	int item;
