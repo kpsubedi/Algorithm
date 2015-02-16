@@ -120,14 +120,23 @@ void create_list(){
 }
 		
 void delete_last_item(){
-	struct node *t;
-	t = head;
+	struct node *t,*t1;
+	if(head == NULL){
+		printf("List doesnot contain elements:\n");
+		exit(0);
+	}
+	t1 = head;
+	t = head->next;
+	if(t == NULL){
+		printf("List Contains only single element:");
+		exit(0);
+		}
 	while(t->next != NULL){
 		t = t->next;
+		t1 = t1->next;
 	}
-	t->next = NULL;
+	t1->next = NULL;
 	free(t);
-
 }	
 
 
