@@ -1,0 +1,32 @@
+[Introduction]
+Pointer is simply a variable that stores the address where a piece of data resides in memory.
+Pointers store memory addresses.
+e.g
+int *ptr;
+
+ptr-----> 0x02345678  	0x00000000
+			0x00000008
+			0x00000016
+			.
+			.
+			.
+			0x02345678 <10>
+
+A pointer points to nothing at all -- that is when it is set to NULL.
+As with other types of variables, we should not assume that a pointer points anywhere 
+useful until we explicitly set it.
+It is also important to remember that nothing prevents a pointer in C from pointing to an 
+invalid address.
+Pointers that point to invalid addresses are sometimes called dangling pointers.
+Some examples of programming errors that can lead to dangling pointers
+---- casting arbitrary integers to pointers
+---- adjusting pointers beyond the bounds of arrays,
+---- deallocating storage that one or more pointers still reference
+
+
+When we declare a pointer in C, a certain amount of space is allocated for it,
+just as for other types of variables.
+Pointers generally occupy one machine word, but their size can vary.
+
+
+
