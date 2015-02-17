@@ -7,11 +7,11 @@ typedef struct node{
 } Node;
 
 //Head Node 
-struct node *head = NULL;
+//struct node *head = NULL;
 
-void add_node();
-void iterate_list();
-void create_list();
+struct node  *add_node(struct node *);
+void iterate_list(struct node *);
+struct node *create_list(struct node *);
 void print_menu(void);
 void delete_last_item();
 void delete_first_item();
@@ -21,33 +21,33 @@ int main(int argc, char **argv){
 	unsigned int n,m;
 	char choice;
 	int item;
-	//struct node *head = NULL;
+	struct node *head = NULL;
 	printf("List Operations:\n");
 	printf("Press m for menu:\n");
 	while(1){
 		scanf("%c",&choice);
 		switch(choice){
 			case 'c':
-				create_list();
+				head = create_list(head);
 				break;
 			case 'a':
 				printf("Item will be added to List:\n");
-				add_node();
+				head = add_node(head);
 				break;
 			case 'l':
-				iterate_list();
+				iterate_list(head);
 				break;
 			case 'm':
 				print_menu();
 				break;
 			case 's':
-				printf("The List has : %d items.\n",list_size());
+				printf("The List has : %d items.\n",list_size(head));
 				break;
 			case 'd':
-				delete_last_item();
+				delete_last_item(head);
 				break;
 			case 'f':
-				delete_first_item();
+				//delete_first_item();
 				break;	
 			case 'q':
 				exit(0);
@@ -57,15 +57,16 @@ int main(int argc, char **argv){
 	return EXIT_SUCCESS;
 
 }
-void delete_first_item(){
+/*void delete_first_item(){
 	struct node *tmp;
 	tmp = head;
 
-	}
-void add_node(){
+	*/
+struct node *add_node(struct node *hhead){
 	struct node *tmp;
+	tmp = hhead;
 	int item;
-	if(head == NULL){
+	if(hhead == NULL){
 		printf("List is Empty:\n");
 		printf("First Create a List:\n");
 		}
@@ -75,10 +76,11 @@ void add_node(){
 		tmp = malloc(sizeof(struct node));
 		tmp->next = NULL;
 		tmp->value = item;
-		tmp->next = head;
-		head = tmp;
+		tmp->next = hhead;
+		hhead = tmp;
 		
 	}
+	return hhead;
 }
 
 void print_menu(void){
@@ -89,20 +91,22 @@ void print_menu(void){
 	printf("d to delete last item from list:\n");
 	printf("q to quit:\n");
 }
-void iterate_list(){
-	printf("List Contains:\n");
+void iterate_list(struct node *hhead){
 	struct node *tmp;
-	tmp = head;
+	tmp = hhead;
+	printf("List Contains:\n");
+	//struct node *tmp;
+	//tmp = head;
 	while(tmp != NULL){
 		printf("%d\t",tmp->value);
 		tmp = tmp->next;
 	}
 	printf("\n");
 }
-int list_size(){
+int list_size(struct node *hhead){
 	unsigned int count = 0;
 	struct node *tmp;
-	tmp = head;
+	tmp = hhead;
 	while(tmp != NULL){
 		count = count + 1;
 		tmp = tmp->next;
@@ -111,31 +115,38 @@ int list_size(){
 }
 
 
-void create_list(){
+struct node *create_list(struct node *hhead){
 	int item;
 	struct node *temp;
 	printf("List is going to Initialized:\n");
-	if(head == NULL){
+	if(hhead == NULL){
 		printf("Please Enter an Item:\n");
 		scanf("%d",&item);
 		temp = malloc(sizeof(struct node));
 		temp->value = item;
 		temp->next = NULL;
-		head = temp;
+		hhead = temp;
 		}else
 		{
 		printf("List Already Initialized:");
 	}
+return hhead;
 }
+/*struct node *getnode(){
+	struct node *tmp;
+		tmp = malloc(sizeof(struct node));
+		tmp->next = NULL;
+	return tmp;
+}*/
 		
-void delete_last_item(){
+void delete_last_item(struct node *hhead){
 	struct node *t,*t1;
-	if(head == NULL){
+	if(hhead == NULL){
 		printf("List doesnot contain elements:\n");
 		exit(0);
 	}
-	t1 = head;
-	t = head->next;
+	t1 = hhead;
+	t = hhead->next;
 	if(t == NULL){
 		printf("List Contains only single element:");
 		exit(0);
