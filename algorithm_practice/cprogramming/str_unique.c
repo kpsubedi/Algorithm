@@ -5,7 +5,7 @@ void display(char *, int);
 void remove_dup(char *, int);
 int main(int argc, char **argv){
 	
-	char name[7] = "parashs";
+	char name[7] = "aaaabbb";
 	display(name,7);
 	remove_dup(name,7);
 	display(name,7);
@@ -13,8 +13,9 @@ int main(int argc, char **argv){
 }
 void display(char *p, int c){
 	int i;
-	for(i = 0; i < c; i++){
-	printf("%c",*(p+i));
+	while((*p)){
+	printf("%c",*(p));
+	p++;
 	}
 	printf("\n");
 }
