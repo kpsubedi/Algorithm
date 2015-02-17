@@ -5,7 +5,7 @@ void display(char *, int);
 void remove_dup(char *, int);
 int main(int argc, char **argv){
 	
-	char name[7] = "aaaabbb";
+	char name[7] = "baaaaaa";
 	display(name,7);
 	remove_dup(name,7);
 	display(name,7);
@@ -33,6 +33,7 @@ void remove_dup(char *pp, int n){
 			++tail;
 		}
 	}
+	//*(pp + tail) = '\0'; both works
 	*(pp + tail) = 0;
 			
 }
