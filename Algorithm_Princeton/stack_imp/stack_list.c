@@ -10,11 +10,11 @@ void usage();
 int get_size(struct node *);
 struct node *getnode(int );
 struct node *push_item(struct node *, int );
-
+struct node *pop_item(struct node *);
 int main(int argc, char *argv[]){
 	struct node *head = NULL;
 	char choice;
-	int val;
+	int val,popped_item;
 	printf("Press h for help:\n");
 	while(1){
 		scanf("%c",&choice);
@@ -29,13 +29,18 @@ int main(int argc, char *argv[]){
 					head = push_item(head, val);
 					break;
 				case 'o':
-					printf("Pop Section:\n");
+					//printf("Pop Section:\n");
+					if(head == NULL){
+						printf("Stack is Empty:\n");
+						}
+					if(head != NULL){head = pop_item(head);}
+					//printf("Popped Item:%d\n",popped_item);
 					break;
 				case 's':
 					printf("Stack Size:\n");
 					if(head == NULL)
 					{
-					printf("Stack Empty:\n");
+					printf("Empty:\n");
 					}
 					if(head != NULL){
 					printf("%d\n",get_size(head));
@@ -71,16 +76,35 @@ struct node *getnode(int n){
 return tmp;
 }
 struct node *push_item(struct node *tmp, int val){
-	struct node *newitem;
-	newitem = getnode(val);
-	newitem->next = tmp;
-	return newitem;
+	struct node *first;
+	first = getnode(val);
+	first->next = tmp;
+	return first;
+}
+struct node *pop_item(struct node *tmp){
+
+	if(get_size(tmp) < 1){
+		printf("Stack is Empty:\n");
+		return NULL;
+	}
+	struct node *t = NULL;
+	t = tmp;
+	int val;
+	val = t->item;
+	t = t->next;
+	free(tmp);
+	printf("Poped Item:%d\n",val);
+	return t;
 }	
 int get_size(struct node *tmp){
-	int c = 0;
-	while(tmp->next != NULL){
-		tmp = tmp->next;
+	unsigned int c = 0;
+	struct node *t;
+	t = tmp;	
+	while(t->next != NULL){
+		t = t->next;
+
 		c = c + 1;
 		}
 	return c;
-}	
+}
+	
