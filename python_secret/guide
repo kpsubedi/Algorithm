@@ -1,0 +1,4 @@
+If the syntax *expression appears in the function call,
+expression must evaluated to an iterable.
+Elements from this iterable are treated as if they were additional
+positional arguments; if there are positional arguments x1,...,xN
